@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{57F62023-5EB8-4674-A8E2-6A7977B126CA}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\Documents\Embarcadero\Studio\Projects\ProjetoXml.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="GeraçãoXml.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ProjetoXml">
+        <MSBuild Projects="..\..\Documents\Embarcadero\Studio\Projects\ProjetoXml.dproj"/>
+    </Target>
+    <Target Name="ProjetoXml:Clean">
+        <MSBuild Projects="..\..\Documents\Embarcadero\Studio\Projects\ProjetoXml.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProjetoXml:Make">
+        <MSBuild Projects="..\..\Documents\Embarcadero\Studio\Projects\ProjetoXml.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GeraçãoXml">
+        <MSBuild Projects="GeraçãoXml.dproj"/>
+    </Target>
+    <Target Name="GeraçãoXml:Clean">
+        <MSBuild Projects="GeraçãoXml.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GeraçãoXml:Make">
+        <MSBuild Projects="GeraçãoXml.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ProjetoXml;GeraçãoXml"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ProjetoXml:Clean;GeraçãoXml:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ProjetoXml:Make;GeraçãoXml:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
